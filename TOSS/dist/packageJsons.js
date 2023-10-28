@@ -1,4 +1,7 @@
-export const packageJsons = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.packageJsons = void 0;
+exports.packageJsons = [
     {
         name: 'firstJSON',
         version: '0.0.1',
