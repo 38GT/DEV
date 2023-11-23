@@ -1,0 +1,19 @@
+{ 문법 }
+
+1. Object.entries
+2. Switch
+3. new Map
+4. Map.values()
+5. Array.from
+6. Array.srot용 함수 만들기
+
+{ 로직 }
+
+1. then 체인 사용해서 await 전에 데이터 처리해주기
+    (1) availables: await fetchVersions(packageName).then(sort)
+
+{ 디자인 패턴 }
+
+1. of, from 메소드 패턴 사용해보기
+2. 상태패턴
+
