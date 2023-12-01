@@ -1,2 +1,10 @@
 "use strict";
-// 타입스크립트로 호이스팅 테스트해보기
+const increase = (function () {
+    let num = 0;
+    return function () {
+        return ++num;
+    };
+})();
+console.log(increase);
+console.log(increase);
+console.log(increase);

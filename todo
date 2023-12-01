@@ -1,3 +1,5 @@
+{ 자바스크립트 기초 }
+
 { 문법 }
 
 1. Object.entries
@@ -14,6 +16,9 @@
 
 { 디자인 패턴 }
 
-1. of, from 메소드 패턴 사용해보기
+1. of, from 메소드 패턴 사용해보기 
+
+ (1) https://velog.io/@bluesun147/of-from-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4
+
 2. 상태패턴
 
