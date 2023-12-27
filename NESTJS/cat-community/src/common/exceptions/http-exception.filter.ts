@@ -20,7 +20,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
           statusCode: number;
           message: string | string[];
         };
-
     if (typeof error === 'string') {
       response.status(status).json({
         success: false,

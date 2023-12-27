@@ -2,23 +2,19 @@ import { CatsService } from './cats.service';
 import {
   Body,
   Controller,
-  Delete,
   Get,
-  HttpException,
   Param,
-  ParseFloatPipe,
   ParseIntPipe,
-  Patch,
   Post,
-  Put,
   UseFilters,
   UseInterceptors,
-  UsePipes,
 } from '@nestjs/common';
 import { CatRequestDto } from './dto/cats.request.dto';
 import { SuccessIntercepter } from 'src/common/interceptors/success.interceptor';
 import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
 import { PositiveIntPipe } from 'src/common/pipes/positiveInt.pipe';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ReadOnlyCatDto } from './dto/cat.dto';
 
 @Controller('cats')
 @UseInterceptors(SuccessIntercepter)
@@ -32,12 +28,22 @@ export class CatsController {
     return { cats: 'get all cat api' };
   }
 
+  @ApiResponse({
+    status: 500,
+    description: 'Server Error...',
+  })
+  @ApiResponse({
+    status: 200,
+    description: '성공!',
+    type: ReadOnlyCatDto,
+  })
+  @ApiOperation({ summary: '회원가입' })
   @Post()
   async signUp(@Body() body: CatRequestDto) {
-    console.log(body);
-    return 'signup';
+    return await this.catsService.signUp(body);
   }
 
+  @ApiOperation({ summary: '로그인' })
   @Post('login')
   logIn() {
     return 'login';

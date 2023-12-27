@@ -3,8 +3,8 @@
   "name": "toss",
   "version": "1.0.0",
   "main": "index.js",
-    "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+  "scripts": {
+    "test": "ts-node test.ts",
     "build": "tsc -P ./tsconfig.json",
     "start:dev": "node --experimental-specifier-resolution=node"
   },
@@ -13,9 +13,11 @@
   "description": "",
   "dependencies": {
     "@types/node": "^20.8.3",
+    "rxjs": "^7.8.1",
     "tsc": "^2.0.4"
   },
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   }
 }
