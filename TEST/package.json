@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "restFront.js",
+  "type": "module",
   "scripts": {
-    "test": "ts-node test.ts"
+    "start_ts": "ts-node test.ts",
+    "start_js": "ts-node test.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }

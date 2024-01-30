@@ -3,6 +3,6 @@
 .env
 !DEV/rules
 !DEV/todo
-
+DART_ALARM_AWS_KEY.pem
 
 

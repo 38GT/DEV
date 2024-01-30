@@ -7,7 +7,7 @@ http
   .createServer(async (req, res) => {
     try {
       if (req.method === "GET") {
-        //Home
+        //home
         if (req.url === "/") {
           const data = await fs.readFile(
             path.join(__dirname, "restFront.html")
@@ -27,6 +27,7 @@ http
         else if (req.url === "/users") {
           res.writeHead(200, { "Content-Type": " text/plain; charset=utf-8" });
           return res.end(JSON.stringify(users));
+          //test
         } else if (req.url === "/test") {
           res.writeHead(200, { "Content-Type": " text/plain; charset=utf-8" });
           return res.end("테스트 페이지");

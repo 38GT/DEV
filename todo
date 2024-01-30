@@ -1,0 +1,59 @@
+{ 자바스크립트 기초 }
+
+1. closure
+2. prototype -> 완료
+
+{ 문법 }
+
+1. Object.entries 
+2. Switch 
+3. new Map 
+4. Map.values() 
+5. Array.from 
+6. Array.sort용 함수 만들기 
+
+{ 로직 }
+
+1. then 체인 사용해서 await 전에 데이터 처리해주기
+    (1) availables: await fetchVersions(packageName).then(sort)
+
+{ 디자인 패턴 }
+
+1. of, from 메소드 패턴 사용해보기 
+
+ (1) https://velog.io/@bluesun147/of-from-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4
+
+2. 상태패턴
+
+
+< express >
+
+1. middleware
+2. req,res 객체
+3. routing
+4. cookie
+
+< DB >
+
+1. MySQL
+2. MongoDB
+
+
+< 화면 > 
+
+1. React
+
+1,2,3,4 하고 react하고 DB하면서 앱 이것저것 만들어보기 * 요점: 화면 만드는 작업 전에 리액트 다시 익히게 해서 알아서 연습하게 만들기
+
+< 코딩 테스트 > 
+
+프로그래머스로 준비
+
+
+< 루틴 >
+
+1. 프로그래머스 -> 토스 코테 
+2. express -> DB -> aws -> NestJS
+3. 리액트 -> chart.js
+
+1,2,3 -> 4. 프로덕트 만들기 (크립토 분석 툴)
