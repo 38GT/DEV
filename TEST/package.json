@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "restFront.js",
-  "type": "module",
   "scripts": {
     "start_ts": "ts-node test.ts",
     "start_js": "ts-node test.js"

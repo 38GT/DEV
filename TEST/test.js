@@ -1,136 +1,115 @@
-console.log("__TEST START__");
+//Queue
+class Queue {
+  array = [];
 
-/*
-값 넣기 성능 비교 실험
-결과: 
-  Array: about 10 ** 2 ms
-  Set: 10 ** 3 ms
-  Map: 1.3 * 10 ** 3 ms
-*/
+  inqueue(item) {
+    this.array.push(item);
+    return item;
+  }
 
-// let config = 10 ** 7; // 이 값을 변경하여 다른 데이터 크기를 실험해 볼 수 있습니다.
+  dequeue_sp() {
+    const item = this.array[0];
+    this.array.splice(0, 1);
+    return item;
+  }
 
-// function addToArray(array, count) {
-//   for (let i = 0; i < count; i++) {
-//     array.push(i);
-//   }
-// }
-
-// function addToSet(set, count) {
-//   for (let i = 0; i < count; i++) {
-//     set.add(i);
-//   }
-// }
-
-// function addToMap(map, count) {
-//   for (let i = 0; i < count; i++) {
-//     map.set(i, true);
-//   }
-// }
-
-// const array = [];
-// const set = new Set();
-// const map = new Map();
-
-// console.time("Array push 성능");
-// addToArray(array, config);
-// console.timeEnd("Array push 성능");
-
-// console.time("Set add 성능");
-// addToSet(set, config);
-// console.timeEnd("Set add 성능");
-
-// console.time("Map set 성능");
-// addToMap(map, config);
-// console.timeEnd("Map set 성능");
-
-// const random = Math.random();
-
-// const figNum = 100000;
-// const new_Num = 10000;
-// const num = Math.floor(random * figNum);
-
-// const random_array_A = Array(figNum)
-//   .fill()
-//   .map(() => Math.floor(Math.random() * figNum));
-
-// const new_array = Array(Math.floor(Math.random() * new_Num))
-//   .fill()
-//   .map(() => Math.floor(Math.random() * figNum));
-
-// const random_array_B = [...random_array_A, ...new_array];
-
-// function B_minus_A(A, B) {
-//   return new Set(A).has(1);
-// }
-
-// function B_minus_A2(A, B) {
-//   return !A.includes(1);
-// }
-
-// function B_minus_A3(A, B) {
-//   const setA = new Set(A);
-//   const setB = new Set(B);
-//   return Array.from(setB).filter((number) => !setA.has(number));
-// }
-
-/*
-값 넣기 성능 비교 실험
-결과: 
-  데이타의 크기에 따라서 실행 시간이 크게 변하지 않는다.
-  Array: about 2 * 10 ** -2 ms
-  Set: 8 * 10 ** - 3 ms
-  Map: 7 * 10 ** - 3 ms
-*/
-const array = Array.from({ length: 10 ** 7 }, (_, index) => index);
-const set = new Set(array);
-const map = new Map(array.map((item) => [item, true]));
-const config = 500;
-
-function include(array, value) {
-  array.includes(value);
+  dequeue_sh() {
+    const item = this.array[0];
+    this.array.shift();
+    return item;
+  }
 }
 
-function has(set, value) {
-  set.has(value);
+class Node {
+  constructor(item) {
+    this.item = item;
+    this.next = null;
+  }
 }
 
-function get(map, key) {
-  return map.get(key);
+class Queue3 {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  push(item) {
+    const node = new Node(item);
+    if (this.head === null) {
+      this.head = node;
+    } else this.tail.next = node;
+
+    this.tail = node;
+    this.size += 1;
+  }
+
+  length() {
+    return this.size;
+  }
+
+  popLeft() {
+    const popedItem = this.head.item;
+    this.head = this.head.next;
+    this.size -= 1;
+    if (this.size === 0) {
+      this.tail = null;
+    }
+    return popedItem;
+  }
+
+  print() {
+    let current = this.head;
+    console.log("start print");
+    while (current) {
+      console.log(current.item);
+      current = current.next;
+    }
+  }
 }
 
-console.time("has 성능");
-has(set, config);
-console.timeEnd("has 성능");
+const queue1 = new Queue();
+const queue2 = new Queue();
+const queue3 = new Queue3();
 
-console.time("include 성능");
-include(array, config);
-console.timeEnd("include 성능");
+const N = 10 ** 5;
 
-console.time("get 성능");
-get(map, config);
-console.timeEnd("get 성능");
+for (let i = 0; i < N; i++) {
+  queue1.inqueue(i);
+  queue2.inqueue(i);
+  queue3.push(i);
+}
 
-// console.time("성능 테스트");
-// B_minus_A(random_array_A, random_array_B);
-// console.timeEnd("성능 테스트");
+console.time("inqueue");
+for (let i = 0; i < N; i++) {
+  queue1.inqueue(i);
+}
+console.timeEnd("inqueue");
 
-// console.time("성능 테스트2");
-// B_minus_A2(random_array_A, random_array_B);
-// console.timeEnd("성능 테스트2");
+console.time("push");
+for (let i = 0; i < N; i++) {
+  queue3.push(i);
+}
+console.timeEnd("push");
 
-// console.time("성능 테스트3");
-// B_minus_A3(random_array_A, random_array_B);
-// console.timeEnd("성능 테스트3");
+for (let i = 0; i < N; i++) {}
 
-console.log("__TEST END__");
+console.time("splice");
+for (let i = 0; i < N; i++) {
+  queue1.dequeue_sp(i);
+}
+console.timeEnd("splice");
 
-// setImmediate는 1초당 36990 번 코드 처리 가능
+console.time("shift");
+for (let i = 0; i < N; i++) {
+  queue2.dequeue_sh(i);
+}
+console.timeEnd("shift");
 
-/*
+console.log(queue3.length());
 
-(10,10): 0.064ms
-(100,10): 0.2ms
-(1000,10): 20ms
-
-*/
+console.time("pop_left");
+for (let i = 0; i < N; i++) {
+  queue3.popLeft(i);
+}
+console.timeEnd("pop_left");

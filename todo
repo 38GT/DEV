@@ -12,10 +12,13 @@
 5. Array.from 
 6. Array.sort용 함수 만들기 
 
-{ 로직 }
+{ 자바스크립트 }
 
 1. then 체인 사용해서 await 전에 데이터 처리해주기
     (1) availables: await fetchVersions(packageName).then(sort)
+2. 메모이제이션
+3. for of, forEach 비동기 처리 차이 이해하기
+
 
 { 디자인 패턴 }
 
@@ -25,6 +28,20 @@
 
 2. 상태패턴
 
+{ 개발 }
+
+1. 유닛 테스트
+
+{ 알고리즘 }
+
+0. 알고리즘 설계 기법 (algorithm design pattern)
+    (1) Divide and Conquer
+    (2) Greedy Algorithm
+    (3) Dynamic Programming
+    (4) Randomized Algorithm
+
+1. 알고리즘은 실행 시간과 메모리 사용 즉, 공간,시간 복잡도을 고려해서 만들어야 한다.
+2. 알고리즘 설계 순서: 문제 정의 -> 알고리즘 디자인 패러다임 선택 -> 의사코드 작성 -> 데이터 구조 설계 -> 코드 작성
 
 < express >
 
