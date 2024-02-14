@@ -1,8 +1,6 @@
 **/node_modules/
 **/dist/
 .env
-!DEV/rules
-!DEV/todo
+DEV/rules
+DEV/todo
 DART_ALARM_AWS_KEY.pem
-
-
