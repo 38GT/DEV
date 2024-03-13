@@ -57,17 +57,8 @@ export default class ShareChange extends ReportPublisher {
             : reportObject.stkrt_irds < 0
             ? "🔻"
             : "";
-        const report = `
-          <strong>대량보유 상황보고</strong>\n
-          <b>기업명:</b> ${reportObject.corp_name}\n
-          <b>보고구분:</b> ${reportObject.report_tp}\n
-          <b>대표보고자:</b> ${reportObject.repror}\n
-          <b>보유비율 증감:</b> ${reportObject.stkrt_irds} ${upDownEmoji}
-          <b>보고사유:</b> ${reportObject.report_resn}
-          <b>공시링크:</b> <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${reportObject.rcept_no}">공시링크</a>
-        `;
+        const report = `<b>대량보유 상황보고</b>\n<b>기업명:</b> ${reportObject.corp_name}\n<b>보고구분:</b> ${reportObject.report_tp}\n<b>대표보고자:</b> ${reportObject.repror}\n<b>보유비율 증감:</b> ${reportObject.stkrt_irds}%${upDownEmoji}\n<b>보고사유:</b> ${reportObject.report_resn}\n<a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=${reportObject.rcept_no}">공시링크</a>`;
 
-        // return JSON.stringify(reportObject);
         return report;
       } else return null;
 

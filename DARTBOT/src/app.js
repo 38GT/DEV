@@ -6,16 +6,7 @@ import {
   reportBootstrap,
 } from "./services/publishingService.js";
 import deliverReport from "./services/deliveryService.js";
-import delay from "./utils/delay.js";
 const app = express();
-const consoleLog = async (reportQueue) => {
-  let report;
-  while ((report = reportQueue.dequeue()) !== null) {
-    console.log(reportQueue.dequeue());
-  }
-  await delay(0);
-  consoleLog(reportQueue);
-};
 
 //중복이 발생한다. 이거 어떻게 찾아야 하나
 //큐 채워져있는 실시간 상황 보여주는 간단한 로그 시스템 만들면 좋을 듯
@@ -24,16 +15,26 @@ const consoleLog = async (reportQueue) => {
 // 초기화: 각 보고서별 목록 초기화
 
 /*
-(1) 보고서 정확하게 만들기
-(2) 중복어디서 발생하는지 알아내기
-(3) 임원 변경 보고서 만들기
+
+(1) 보고서 정확하게 만들기 (O)
+(4) 왜 200이 몰아서 나오는가? <=> fetch_data 메서드는 왜 period를 무시하는가 (O)
+(2) 중복어디서 발생하는지 알아내기 => 찾아냄 => 
+  원인: 필터로 걸러낸 공시들이 해당 보고서에서 사용되는 것이 아닌 경우가 생김
+  해결법: 공시유형이 아닌 요청 URL별로 보고서 나누기
+  필요한것: 자동화 기법 -> URL마다 가능한 보고서 제목 리스트 뽑아주는 자동화 코드 짜기
+  URL 넣으면 리스트 가져오는 코드
+
+  const rpnmMaker = (URL)=> {
+    return rpnmList;
+  }
+
 */
 
 const main = async () => {
   const dartQueue = new Queue();
   const reportQueue = new Queue();
   await reportBootstrap();
-  pollingDARTdata(dartQueue, 60000);
+  pollingDARTdata(dartQueue, 600);
   reportPublishing(dartQueue, reportQueue);
   deliverReport(reportQueue);
 };
@@ -41,19 +42,3 @@ const main = async () => {
 main();
 
 app.listen(3000, () => console.log("\x1b[31m", "DART알리미 test_server_start"));
-
-{
-  /* <b>bold</b>, <strong>bold</strong>
-<i>italic</i>, <em>italic</em>
-<u>underline</u>, <ins>underline</ins>
-<s>strikethrough</s>, <strike>strikethrough</strike>, <del>strikethrough</del>
-<span class="tg-spoiler">spoiler</span>, <tg-spoiler>spoiler</tg-spoiler>
-<b>bold <i>italic bold <s>italic bold strikethrough <span class="tg-spoiler">italic bold strikethrough spoiler</span></s> <u>underline italic bold</u></i> bold</b>
-<a href="http://www.example.com/">inline URL</a>
-<a href="tg://user?id=123456789">inline mention of a user</a>
-<tg-emoji emoji-id="5368324170671202286">👍</tg-emoji>
-<code>inline fixed-width code</code>
-<pre>pre-formatted fixed-width code block</pre>
-<pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>
-<blockquote>Block quotation started\nBlock quotation continued\nThe last line of the block quotation</blockquote> */
-}
